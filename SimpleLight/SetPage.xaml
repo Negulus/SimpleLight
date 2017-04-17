@@ -1,0 +1,50 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="SimpleLight.SetPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded" Unloaded="PhoneApplicationPage_Unloaded">
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsMenuEnabled="False" IsVisible="True" Mode="Default" Opacity="0">
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/save.png" IsEnabled="True" Text="Save" Click="AppBar_Save_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/cancel.png" IsEnabled="True" Text="Cancel" Click="AppBar_Cancel_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/pin.png" IsEnabled="True" Text="Pin to Start" Click="ApplicationBarIconButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid Margin="10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Path=LocalizedResources.Set_Head, Source={StaticResource LocalizedStrings}}" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Grid x:Name="LayoutRoot" Background="Transparent" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Path=LocalizedResources.Set_Start, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <CheckBox HorizontalAlignment="Right" x:Name="check_set_start"/>
+
+            <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Path=LocalizedResources.Set_Lock, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1"/>
+                <TextBlock x:Name="text_lock_afterrestart" Text="{Binding Path=LocalizedResources.Set_AfterRestart, Source={StaticResource LocalizedStrings}}" Visibility="Collapsed" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2"/>
+            </Grid>
+            <CheckBox HorizontalAlignment="Right" x:Name="check_set_lock" Grid.Row="1" Click="check_set_lock_Click"/>
+        </Grid>
+    </Grid>
+</phone:PhoneApplicationPage>
