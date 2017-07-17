@@ -18,15 +18,15 @@
     </phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="grd">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="300"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <Button x:Name="but_flash" Click="but_flash_Click" FontSize="100" IsEnabled="False" Height="300" Width="300" Grid.Row="2" BorderThickness="2"/>
+    <Grid x:Name="grid_root">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="1" x:Name="but_flash" Click="but_flash_Click" IsEnabled="{Binding But_Enable}" HorizontalAlignment="Stretch" BorderThickness="2" Height="300">
+            <Image Source="{Binding But_Image, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        </Button>
     </Grid>
 
 </phone:PhoneApplicationPage>

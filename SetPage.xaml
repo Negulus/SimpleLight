@@ -20,31 +20,30 @@
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid Margin="10,0">
+    <Grid Margin="10,0" x:Name="grid_root">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Path=LocalizedResources.Set_Head, Source={StaticResource LocalizedStrings}}" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <Grid x:Name="LayoutRoot" Background="Transparent" Grid.Row="1">
+        <Grid x:Name="LayoutRoot" Grid.Row="1" HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="{Binding Path=LocalizedResources.Set_Start, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <CheckBox HorizontalAlignment="Right" x:Name="check_set_start"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=LocalizedResources.Set_Start, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <CheckBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" IsChecked="{Binding Check_Start, Mode=TwoWay}"/>
 
-            <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="20"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="{Binding Path=LocalizedResources.Set_Lock, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1"/>
-                <TextBlock x:Name="text_lock_afterrestart" Text="{Binding Path=LocalizedResources.Set_AfterRestart, Source={StaticResource LocalizedStrings}}" Visibility="Collapsed" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2"/>
-            </Grid>
-            <CheckBox HorizontalAlignment="Right" x:Name="check_set_lock" Grid.Row="1" Click="check_set_lock_Click"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=LocalizedResources.Set_Lock, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" IsChecked="{Binding Check_Lock, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" x:Name="text_lock_afterrestart" Text="{Binding Path=LocalizedResources.Set_AfterRestart, Source={StaticResource LocalizedStrings}}" Visibility="{Binding Vis_Restart}" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>

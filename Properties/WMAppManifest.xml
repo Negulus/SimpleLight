@@ -4,7 +4,7 @@
   <Languages xmlns="">
     <Language code="ru" />
   </Languages>
-  <App xmlns="" ProductID="{b0094ec5-d207-40b1-87f7-fd8522e41076}" Title="SimpleLight" RuntimeType="Silverlight" Version="1.0.0.2" Genre="apps.normal" Author="SimpleLight author" Description="Sample description" Publisher="SimpleLight" PublisherID="{daa7547e-6f90-4479-b9f9-16e59cddd944}">
+  <App xmlns="" ProductID="{b0094ec5-d207-40b1-87f7-fd8522e41076}" Title="SimpleLight" RuntimeType="Silverlight" Version="1.0.0.3" Genre="apps.normal" Author="SimpleLight author" Description="Sample description" Publisher="SimpleLight" PublisherID="{daa7547e-6f90-4479-b9f9-16e59cddd944}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_ISV_CAMERA" />

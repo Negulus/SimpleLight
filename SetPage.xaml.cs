@@ -7,14 +7,19 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using SimpleLight.Resources;
+using System.ComponentModel;
 
 namespace SimpleLight
 {
     public partial class SetPage : PhoneApplicationPage
     {
+        DataPage Data = new DataPage();
+
         public SetPage()
         {
             InitializeComponent();
+
+            grid_root.DataContext = Data;
         }
 
         void AppBarInit()
@@ -26,24 +31,16 @@ namespace SimpleLight
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            check_set_start.IsChecked = AppData.Settings.start_on;
-            check_set_lock.IsChecked = AppData.Settings.lock_on;
         }
 
         private void PhoneApplicationPage_Unloaded(object sender, RoutedEventArgs e)
         {
         }
 
-        private void check_set_lock_Click(object sender, RoutedEventArgs e)
-        {
-            text_lock_afterrestart.Visibility = (AppData.Settings.lock_on != check_set_lock.IsChecked) ? Visibility.Visible : Visibility.Collapsed;
-        }
-
         private void AppBar_Save_Click(object sender, EventArgs e)
         {
-            AppData.Settings.start_on = (bool)check_set_start.IsChecked;
-            AppData.Settings.lock_on = (bool)check_set_lock.IsChecked;
-            AppData.SetSave();
+            Settings.EnableOnStart = Data.Check_Start;
+            Settings.LockDisable = Data.Check_Lock;
             NavigationService.GoBack();
         }
 
@@ -70,6 +67,56 @@ namespace SimpleLight
             else
             {
                 MessageBox.Show(AppResources.Set_PinNo);
+            }
+        }
+
+        class DataPage : INotifyPropertyChanged
+        {
+            bool Update = false;
+
+            private bool _Check_Start;
+            public bool Check_Start
+            {
+                get
+                {
+                    return _Check_Start;
+                }
+                set
+                {
+                    _Check_Start = value;
+                    NotifyPropertyChanged("Check_Start");
+                }
+            }
+            
+            private bool _Check_Lock;
+            public bool Check_Lock
+            {
+                get
+                {
+                    return _Check_Lock;
+                }
+                set
+                {
+                    _Check_Lock = value;
+                    Vis_Restart = Update ? Visibility.Visible : Visibility.Collapsed;
+                    NotifyPropertyChanged("Check_Lock");
+                    NotifyPropertyChanged("Vis_Restart");
+                }
+            }
+            
+            public Visibility Vis_Restart { get; set; }
+
+            public DataPage()
+            {
+                Check_Start = Settings.EnableOnStart;
+                Check_Lock = Settings.LockDisable;
+                Update = true;
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected void NotifyPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

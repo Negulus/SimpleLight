@@ -155,4 +155,10 @@
   <data name="Set_PinNo" xml:space="preserve">
     <value>Плитка уже существует</value>
   </data>
+  <data name="Text_Error_Light" xml:space="preserve">
+    <value>Ошибка инициализации фонарика</value>
+  </data>
+  <data name="Text_Error_Title" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
 </root>
